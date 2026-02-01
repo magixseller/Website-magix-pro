@@ -1,0 +1,8 @@
+{
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ],
+  "name": "MAGIX TOOL SELLER",
+  "description": ""
+}
