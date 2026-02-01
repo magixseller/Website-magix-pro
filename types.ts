@@ -24,7 +24,9 @@ export enum AppView {
   CS_SCRIPT = 'cs-script',
   CATALOG_PDF = 'catalog-pdf',
   DROPSHIPPER = 'dropshipper',
-  REFERRAL = 'referral'
+  REFERRAL = 'referral',
+  FOTO = 'foto',
+  API_TUTORIAL = 'api_tutorial'
 }
 
 export type UserTier = 'GUEST' | 'TRIAL' | 'PREMIUM' | 'LIFETIME';

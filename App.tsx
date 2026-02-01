@@ -22,11 +22,13 @@ import ContactAdmin from './components/ContactAdmin';
 import Feedback from './components/Feedback';
 import ReferralView from './components/ReferralView';
 import MagicBgRemover from './components/MagicBgRemover';
+import MagicFoto from './components/MagicFoto';
 import MagicFeaturePlaceholder from './components/MagicFeaturePlaceholder';
 import AdminLoginModal from './components/AdminLoginModal';
 import PremiumSuccessModal from './components/PremiumSuccessModal';
 import LoadingScreen from './components/LoadingScreen';
 import FreeActivationLoader from './components/FreeActivationLoader';
+import ApiKeyTutorial from './components/ApiKeyTutorial';
 import { Menu, Zap } from 'lucide-react';
 
 const App: React.FC = () => {
@@ -51,7 +53,6 @@ const App: React.FC = () => {
     return defaultUser;
   });
 
-  // DATA PERSISTENCE (PENTING AGAR DATA TIDAK HILANG)
   const [vouchers, setVouchers] = useState<Voucher[]>(() => {
     const saved = localStorage.getItem('magix_vouchers');
     return saved ? JSON.parse(saved) : [];
@@ -71,7 +72,6 @@ const App: React.FC = () => {
     webhook: { secretKey: '', webhookUrl: 'https://magix-api.com/webhook' }
   });
 
-  // Auto-save ke LocalStorage setiap ada perubahan
   useEffect(() => {
     localStorage.setItem('magix_user', JSON.stringify(user));
   }, [user]);
@@ -152,7 +152,9 @@ const App: React.FC = () => {
         
         <div className="flex-1 pb-20">
           {currentView === AppView.HOME && <Home onStart={setCurrentView} user={user} onActivateFree={handleActivateFreeTrial} />}
+          {currentView === AppView.API_TUTORIAL && <ApiKeyTutorial />}
           {currentView === AppView.STUDIO && <MagicStudio useCredits={useCredits} />}
+          {currentView === AppView.FOTO && <MagicFoto />}
           {currentView === AppView.PRODUK && <MagicProduk useCredits={useCredits} />}
           {currentView === AppView.KONTEN && <MagicKonten useCredits={useCredits} />}
           {currentView === AppView.VOICE && <MagicVoice />}

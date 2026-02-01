@@ -4,7 +4,8 @@ import {
   Sparkles, Store, ShoppingBag, Camera, TrendingUp, 
   MessageSquareText, Zap, Menu, X, Lock, ShieldCheck, ShoppingCart,
   Mic, Key, User, Library, PackagePlus, MessageSquare, Globe, Layers,
-  Shield, Frame, Scissors, PenTool, Instagram, FileDown, ShoppingCart as CartIcon
+  Shield, Frame, Scissors, PenTool, Instagram, FileDown, ShoppingCart as CartIcon,
+  Image as ImageIcon, HelpCircle
 } from 'lucide-react';
 import { AppView, UserAccount } from '../types';
 
@@ -46,13 +47,12 @@ const Sidebar: React.FC<SidebarProps> = ({ currentView, setView, isOpen, onClose
         <nav className="flex-1 px-4 py-2 space-y-1 overflow-y-auto scrollbar-hide pb-10">
           <p className="px-4 text-[9px] font-black uppercase tracking-[0.2em] mb-2 mt-6 text-slate-600">Utama</p>
           <NavItem view={AppView.HOME} icon={Store} label="Home" color="text-indigo-400" />
+          <NavItem view={AppView.API_TUTORIAL} icon={HelpCircle} label="Panduan API Key" color="text-amber-400" />
           <NavItem view={AppView.MARKETPLACE} icon={TrendingUp} label="Marketplace Sync" color="text-emerald-400" />
-          <NavItem view={AppView.DROPSHIPPER} icon={CartIcon} label="Magic Dropshipper" color="text-amber-400" />
           
           <p className="px-4 text-[9px] font-black uppercase tracking-[0.2em] mb-2 mt-6 text-slate-600">Visual AI</p>
           <NavItem view={AppView.STUDIO} icon={Sparkles} label="Magic Studio" color="text-indigo-400" />
-          <NavItem view={AppView.CAROUSEL} icon={Layers} label="Magic Carousel" color="text-indigo-400" />
-          <NavItem view={AppView.FRAME} icon={Frame} label="Magic Frame" color="text-emerald-400" />
+          <NavItem view={AppView.FOTO} icon={ImageIcon} label="Magic Foto Pro" color="text-blue-400" />
           <NavItem view={AppView.BG_REMOVER} icon={Scissors} label="Magic BG Remover" color="text-rose-400" />
           
           <p className="px-4 text-[9px] font-black uppercase tracking-[0.2em] mb-2 mt-6 text-slate-600">Marketing</p>
@@ -62,15 +62,9 @@ const Sidebar: React.FC<SidebarProps> = ({ currentView, setView, isOpen, onClose
           <NavItem view={AppView.KEYWORD} icon={Key} label="Magic Keyword" color="text-amber-400" />
           <NavItem view={AppView.REVIEW_AI} icon={MessageSquare} label="Balas Ulasan AI" color="text-blue-400" />
           
-          <p className="px-4 text-[9px] font-black uppercase tracking-[0.2em] mb-2 mt-6 text-slate-600">Lanjutan</p>
-          <NavItem view={AppView.BUNDLE} icon={PackagePlus} label="Magic Bundle" color="text-indigo-400" />
-          <NavItem view={AppView.BIO} icon={User} label="Magic Bio Toko" color="text-pink-400" />
-          <NavItem view={AppView.LIBRARY} icon={Library} label="Magic Library" color="text-slate-400" />
-          
           <p className="px-4 text-[9px] font-black uppercase tracking-[0.2em] mb-2 mt-6 text-slate-600">Akun</p>
           <NavItem view={AppView.PRICING} icon={ShoppingCart} label="Beli Paket" color="text-indigo-400" />
           <NavItem view={AppView.GLOBAL} icon={Globe} label="Security & Admin" color="text-slate-500" />
-          <NavItem view={AppView.FEEDBACK} icon={MessageSquareText} label="Kritik & Saran" color="text-slate-500" />
         </nav>
 
         <div className="p-4 border-t border-slate-800 space-y-2">

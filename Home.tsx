@@ -1,10 +1,10 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
   Sparkles, ArrowRight, Zap, Gift, CheckCircle2, Rocket, 
   ShoppingCart, Layout, TrendingUp, MessageSquareText,
   Gem, ChevronDown, ChevronUp, HelpCircle, ArrowUpRight, MousePointer2,
-  ShieldCheck, Star, Clock, DollarSign, Calculator, Layers, Scissors
+  ShieldCheck, Star, Clock, DollarSign, Calculator, Layers, Scissors, AlertCircle
 } from 'lucide-react';
 import { AppView, UserTier, UserAccount } from '../types';
 
@@ -31,6 +31,16 @@ const FAQS = [
 
 const Home: React.FC<HomeProps> = ({ onStart, user, onActivateFree }) => {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const [apiStatus, setApiStatus] = useState<'checking' | 'active' | 'inactive'>('checking');
+
+  useEffect(() => {
+    // Mengecek apakah API_KEY sudah terbaca dari Environment Variable
+    if (process.env.API_KEY && process.env.API_KEY !== "undefined" && process.env.API_KEY.length > 5) {
+      setApiStatus('active');
+    } else {
+      setApiStatus('inactive');
+    }
+  }, []);
 
   const mainFeatures = [
     {
@@ -75,9 +85,22 @@ const Home: React.FC<HomeProps> = ({ onStart, user, onActivateFree }) => {
       {/* Hero Section */}
       <section className="relative z-10 pt-20 pb-16 md:pt-32 md:pb-32 px-4 text-center overflow-hidden">
         <div className="max-w-5xl mx-auto space-y-8">
-           <div className="inline-flex items-center gap-3 px-4 py-2 bg-indigo-500/10 border border-indigo-500/20 rounded-full animate-in fade-in slide-in-from-top-4 duration-700">
-              <Sparkles className="text-amber-400 fill-amber-400" size={14} />
-              <span className="text-[10px] md:text-xs font-black text-indigo-300 uppercase tracking-widest">Asisten AI Tercanggih Untuk Seller Indonesia</span>
+           <div className="flex flex-col items-center gap-4">
+              <div className="inline-flex items-center gap-3 px-4 py-2 bg-indigo-500/10 border border-indigo-500/20 rounded-full animate-in fade-in slide-in-from-top-4 duration-700">
+                <Sparkles className="text-amber-400 fill-amber-400" size={14} />
+                <span className="text-[10px] md:text-xs font-black text-indigo-300 uppercase tracking-widest">Asisten AI Tercanggih Untuk Seller Indonesia</span>
+              </div>
+              
+              {/* API Connection Badge */}
+              {apiStatus === 'active' ? (
+                <div className="flex items-center gap-2 px-3 py-1 bg-emerald-500/10 border border-emerald-500/20 rounded-lg text-emerald-400 text-[9px] font-black uppercase tracking-widest">
+                  <ShieldCheck size={12} /> AI Engine Online
+                </div>
+              ) : apiStatus === 'inactive' ? (
+                <div className="flex items-center gap-2 px-3 py-1 bg-rose-500/10 border border-rose-500/20 rounded-lg text-rose-400 text-[9px] font-black uppercase tracking-widest animate-pulse">
+                  <AlertCircle size={12} /> API Key Belum Terdeteksi
+                </div>
+              ) : null}
            </div>
 
            <h1 className="text-4xl md:text-8xl font-black text-white leading-[0.9] tracking-tighter uppercase italic text-balance">
